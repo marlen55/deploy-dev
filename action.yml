@@ -25,6 +25,7 @@ runs:
 
         GH_URL=$(echo "$GITHUB_SERVER_URL" | sed 's,://,://x-access-token:'"$DEPLOY_TOKEN"'@,g')
         git clone --depth 1 ${GH_URL}/${{ inputs.gitops-repo }}.git ./gitops_tmp
+        git checkout develop
       shell: bash
 
     - name: Update image tag
@@ -42,5 +43,5 @@ runs:
         git config user.email "ga-deployer@tietoevry.com"
         git add .
         git commit --allow-empty -m "Deploy \"${{ inputs.docker-image-tag }}\" tag into ${{ inputs.target-file }}"
-        git push -u origin master
+        git push -u origin develop
       shell: bash
