@@ -21,10 +21,10 @@ runs:
   steps:
     - name: Checkout GitOps
       run: |
-        echo "Checking out ${GITHUB_SERVER_URL}/marlen55/${{ inputs.gitops-repo }}.git"
+        echo "Checking out ${GITHUB_SERVER_URL}/${{ inputs.gitops-repo }}.git"
         rm -rf ./gitops_tmp
 
-        git clone --depth 1 https://x-access-token:${DEPLOY_TOKEN}@github.com/marlen55/${{ inputs.gitops-repo }}.git ./gitops_tmp
+        git clone --depth 1 https://x-access-token:${DEPLOY_TOKEN}@github.com/${{ inputs.gitops-repo }}.git ./gitops_tmp
         cd ./gitops_tmp
         git checkout develop
       shell: bash
