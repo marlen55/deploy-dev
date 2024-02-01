@@ -26,12 +26,13 @@ runs:
 
         git clone --depth 1 https://x-access-token:${DEPLOY_TOKEN}@github.com/${{ inputs.gitops-repo }}.git ./gitops_tmp
         cd ./gitops_tmp
+        git branch -a
+        git checkout develop
       shell: bash
 
     - name: Update image tag
       working-directory: ./gitops_tmp
       run: |
-        git checkout develop
         echo "Setting \"${{ inputs.docker-image-tag }}\" tag in \"${{ inputs.target-file }}\""
         sed -i 's/tag: .*$/tag: "'${{ inputs.docker-image-tag }}'"/g' ${{ inputs.target-file }}
       shell: bash
