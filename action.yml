@@ -26,7 +26,6 @@ runs:
 
         git clone --depth 1 https://x-access-token:${DEPLOY_TOKEN}@github.com/${{ inputs.gitops-repo }}.git ./gitops_tmp
         cd ./gitops_tmp
-        git checkout develop
       shell: bash
 
     - name: Update image tag
